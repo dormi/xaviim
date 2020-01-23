@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   root 'index#index'
 
   get 'forbidden' => 'index#forbidden'
+  get 'til' => 'index#til'
+
   get '/:site' => 'index#site'
 end
