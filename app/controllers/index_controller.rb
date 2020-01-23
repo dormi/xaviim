@@ -1,42 +1,25 @@
 class IndexController < ApplicationController
-	before_action :authenticate, except: [:index, :forbidden]
+  before_action :authenticate, only: :site
 
-	def index
-	end
+  def site
+    logger.info "autenticated site #{params[:site]} read from #{request.remote_ip} with #{request.user_agent}"
+    render "sites/#{params[:site]}"
+  end
 
-	def site
-	  logger.info "autenticated site #{session[:site]} read from #{request.remote_ip} with #{request.user_agent}"
-	  if session[:site] == "bebanjo_code"
-	  	render session[:site], layout: false
-	  else
-	  	render session[:site]
-	  end
-	end
+  private
 
-	def forbidden
-	end
+    def authenticate
+      if params[:key] && params[:key] == secret_key
+        session[:site] = params[:site]
+      end
 
-	private 
+      unless session[:site] == params[:site]
+        logger.info "forbidden page!"
+        render :forbidden
+      end
+    end
 
-	def authenticate
-		authenticated = false
-
-		if params[:key]
-			if Dormifumi::Application.config.keys[params[:site]] == params[:key]
-				authenticated = true
-				session[:site] = params[:site]
-			end
-		end 
-
-		if !session[:site].blank?
-		  	if session[:site] == params[:site]
-				authenticated = true
-		  	end
-		end
-
-		if !authenticated
-			logger.info "forbidden page!"
-			render :forbidden
-		end
-	end	
+    def secret_key
+      Rails.application.credentials.site_keys[params[:site].to_sym]
+    end
 end
