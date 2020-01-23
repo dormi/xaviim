@@ -22,7 +22,7 @@ class SitesTest < ApplicationSystemTestCase
     assert_text KO_TEXT
   end
 
-  test "visiting a site wo/ key works after a first visit with key" do
+  test "visiting a site without key works after a first visit with key" do
     visit '/example?key=secret'  
     visit '/example'
 
@@ -41,7 +41,7 @@ class SitesTest < ApplicationSystemTestCase
     assert_text KO_TEXT
   end
 
-  test "visiting an unknown site with existing is forbidden" do
+  test "visiting an unknown site with existing key is forbidden" do
     visit '/unknown?key=secret'
   
     assert_text KO_TEXT
