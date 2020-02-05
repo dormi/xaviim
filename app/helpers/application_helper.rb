@@ -1,13 +1,9 @@
 module ApplicationHelper
-  def rouge(text, language)
-    # formatter = Rouge::Formatters::HTML.new(css_class: 'highlight')
-    # lexer = Rouge::Lexer.find(language)
-    # formatter.format(lexer.lex(text))
-
+  def snippet(file, language: 'ruby')
+    text = File.read(Rails.root.join('app', 'views', 'snippets', file))    
     formatter = Rouge::Formatters::HTML.new
     lexer = Rouge::Lexer.find(language)
-    formatter.format(lexer.lex(text))
-    # lexer = Rouge::Lexers::Shell.new
-    # formatter.format(lexer.lex(source))
+
+    tag.pre formatter.format(lexer.lex(text)).html_safe, class: 'highlight'
   end
 end

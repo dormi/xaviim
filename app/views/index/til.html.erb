@@ -11,9 +11,5 @@
 </div>
 
 <div class="row">
-	<% # render "test", language: :ruby %>
-	<code class="highlight">
-		<% # render "test", language: :ruby %>
-		<%= raw rouge("def rouge_me\n  puts 'hey!'\nend", "ruby") %>
-	</code>
+  <%= snippet('test.rb') %>
 </div>
