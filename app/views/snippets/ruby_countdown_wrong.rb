@@ -1,0 +1,1 @@
+(lo..hi).to_a.reverse.each { |n| puts n }
