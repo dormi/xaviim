@@ -1,15 +1,24 @@
 // Place all the styles related to the index controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#index-index, #index-site, #index-forbiddden
-	//background-color: #1DC2F7
-	font-family: 'Lato';
-	margin-top: 10%
-	//color: white
+
+body
+	font-family: 'Lato'
 	a
-		color: #428bca // #1DC2F7
+		color: #428bca
 		font-style: italic
+	h1, h2, h3, h4, h5, h6
+		font-family: 'Lato'
+		font-weight: bold
 	
+	.footer
+		color: #ccc
+		font-weight: lighter
+		text-align: center
+		padding-bottom: 10px
+	
+#index-index, #index-site
+	margin-top: 100px
 
 	.hello
 		font-size: 4em
@@ -21,12 +30,6 @@
 		a:hover
 			text-decoration: none
 			color: black
-	
-	.footer
-		color: #ccc
-		font-weight: lighter
-		text-align: center
-		padding-bottom: 10px;
 		
 	@media (min-width: 992px)
 		.hello
@@ -36,7 +39,6 @@
 
 
 #index-site
-	margin-top: 100px !important
 	margin-bottom: 50px
 
 	.expandable
@@ -57,4 +59,11 @@
 		text-align: center
 		margin-top: 20px
 
-		
+#index-til
+	.header
+		border-bottom: 1px solid #ccc
+		margin-bottom: 50px;
+
+	
+
+
